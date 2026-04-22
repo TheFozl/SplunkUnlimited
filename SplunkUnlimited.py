@@ -540,6 +540,8 @@ def apply_patch(filepath: str, offset: int, pattern: bytes, replace: bytes) -> N
             )
         fh.seek(offset)
         fh.write(replace)
+        fh.flush()
+        os.fsync(fh.fileno())
 
 
 def run(filepath: str, dry_run: bool = False, force_mode: bool = False) -> int:
