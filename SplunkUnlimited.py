@@ -747,7 +747,7 @@ Version: %s
         apply_patch(filepath, offset, pattern_bytes, replace_bytes)
     except KeyboardInterrupt:
         log.error("\nAborted by user.")
-        sys.exit(restore_backup(backup_path, filepath))
+        return restore_backup(backup_path, filepath)
     except (RuntimeError, OSError) as exc:
         log.error("Patch failed: %s", exc)
         log.debug(traceback.format_exc())
