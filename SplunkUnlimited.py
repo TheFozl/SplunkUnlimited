@@ -600,6 +600,8 @@ Version: %s
     if force_mode:
         log.warning(
             "Force-mode enabled: only proceed if you know what you are doing.")
+        log.warning(
+            "Force-mode enabled: switching to verbose output")
 
     if not os.path.isfile(filepath):
         log.error("File not found: %s", filepath)
