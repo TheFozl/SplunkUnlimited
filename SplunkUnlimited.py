@@ -519,6 +519,26 @@ def create_backup(filepath: str) -> str:
     shutil.copy2(filepath, backup_path)
     return backup_path
 
+def restore_backup(backup_path: str, filepath: str) -> int:
+    """Restore backup, returns 6 on success, 7 on failure."""
+    log = logging.getLogger(__name__)
+    log.info("Restoring backup...")
+
+    try:
+        shutil.copy2(backup_path, filepath)
+        log.info("Backup restored successfully.")
+        return 6
+    except OSError as restore_exc:
+        log.critical(
+            "Backup restoration also failed: %s\n"
+            "  The file may be in a corrupted state!\n"
+            "  Backup is available at: %s",
+            restore_exc,
+            backup_path,
+        )
+        log.debug(traceback.format_exc())
+        return 7
+
 
 def apply_patch(filepath: str, offset: int, pattern: bytes, replace: bytes) -> None:
     """Overwrite bytes at *offset* in *filepath* with *replace*.
@@ -722,24 +742,13 @@ Version: %s
     log.info("Applying patch...")
     try:
         apply_patch(filepath, offset, pattern_bytes, replace_bytes)
+    except KeyboardInterrupt:
+        log.error("\nAborted by user.")
+        sys.exit(restore_backup(backup_path, filepath))
     except (RuntimeError, OSError) as exc:
         log.error("Patch failed: %s", exc)
         log.debug(traceback.format_exc())
-        log.info("Restoring backup...")
-        try:
-            shutil.copy2(backup_path, filepath)
-            log.info("Backup restored successfully.")
-        except OSError as restore_exc:
-            log.critical(
-                "Backup restoration also failed: %s\n"
-                "  The file may be in a corrupted state!\n"
-                "  Backup is available at: %s",
-                restore_exc,
-                backup_path,
-            )
-            log.debug(traceback.format_exc())
-            return 7
-        return 6
+        return restore_backup(backup_path, filepath)
 
     log.info("")
     log.info("Patch applied successfully!")
