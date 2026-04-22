@@ -29,6 +29,7 @@ import os
 import shutil
 import stat
 import sys
+import time
 import traceback
 
 
@@ -503,13 +504,14 @@ def bytes_to_hex(data: bytes) -> str:
 
 
 def create_backup(filepath: str) -> str:
-    """Copy *filepath* to *filepath*.bak and return the backup path.
+    """Copy *filepath* to *filepath*.*timestamp*.bak and return the backup path.
     Raises
     ------
     OSError
         If the copy operation fails.
     """
-    backup_path = filepath + ".bak"
+    timestamp = int(time.time())
+    backup_path = f"{filepath}.{timestamp}.bak"
 
     if os.path.exists(backup_path):
         os.chmod(backup_path, stat.S_IWRITE | stat.S_IREAD)
