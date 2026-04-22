@@ -640,11 +640,14 @@ Version: %s
             try:
                 choice = input(
                     f"Select a version [1-{len(entries)}]: ").strip()
-                if not choice.isdigit() or not 1 <= int(choice) <= len(entries):
-                    print(
-                        f"  Please enter a number between 1 and {len(entries)}.")
+                try:
+                    idx = int(choice)
+                    if not 1 <= idx <= len(entries):
+                        raise ValueError
+                except ValueError:
+                    print(f"  Please enter a number between 1 and {len(entries)}.")
                     continue
-                hash_entry = entries[int(choice) - 1][1]
+                hash_entry = entries[idx - 1][1]
                 log.warning("Selected: splunkd %s (%s)", hash_entry.get(
                     "version", "N/A"), hash_entry.get("platform", "N/A"))
                 log.warning("")
