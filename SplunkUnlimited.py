@@ -529,12 +529,14 @@ def apply_patch(filepath: str, offset: int, pattern: bytes, replace: bytes) -> N
     OSError
         If the file cannot be opened or written.
     """
-    os.chmod(filepath, stat.S_IWRITE | stat.S_IREAD)
+    original_mode = stat.S_IMODE(os.stat(filepath).st_mode)
+    os.chmod(filepath, original_mode | stat.S_IWRITE | stat.S_IREAD)
 
     with open(filepath, "r+b") as fh:
         fh.seek(offset)
         current = fh.read(len(pattern))
         if current != pattern:
+            os.chmod(filepath, original_mode)
             raise RuntimeError(
                 f"Bytes at offset 0x{offset:08X} do not match expected pattern.\n"
                 f"  Expected : {bytes_to_hex(pattern)}\n"
@@ -544,6 +546,8 @@ def apply_patch(filepath: str, offset: int, pattern: bytes, replace: bytes) -> N
         fh.write(replace)
         fh.flush()
         os.fsync(fh.fileno())
+
+    os.chmod(filepath, original_mode)
 
 
 def run(filepath: str, dry_run: bool = False, force_mode: bool = False) -> int:
