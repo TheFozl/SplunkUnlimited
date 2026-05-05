@@ -406,6 +406,11 @@ HASH_DB = {
         "platform": "linux64",
         "patch_id": "spl_lin64_5",
     },
+    "5f097f13c39a11260f2cd6937ca8b7153e4d8b68db7f983a17ac7435af545bd7": {
+        "version":  "10.0.6",
+        "platform": "linux64",
+        "patch_id": "spl_lin64_5",
+    },
     "228bbf46fe72d54145c44362d4a80910b2080fde332ed00341e15f3add400854": {
         "version":  "10.2.0",
         "platform": "linux64",
@@ -463,7 +468,7 @@ PATCH_DB = {
         "replace": [0xE8, 0xDF, 0xD4, 0xFF, 0xFF, 0x84, 0xC0, 0x0F, 0x85],
     },
     "spl_lin64_5": {
-        "description": "splunkd (linux64), 10.0.0 to 10.0.5",
+        "description": "splunkd (linux64), 10.0.0 to 10.0.6",
         "pattern": [0xE8, 0x0F, 0xEA, 0xFF, 0xFF, 0x84, 0xC0, 0x75],
         "replace": [0xE8, 0x0F, 0xEA, 0xFF, 0xFF, 0x84, 0xC0, 0x74],
     },
