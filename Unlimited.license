@@ -11,24 +11,21 @@
     <label>Splunk Enterprise Unlimited</label>
     <expiration_time>9000000000</expiration_time>
     <features>
-      <feature>Auth</feature>
-      <feature>FwdData</feature>
-      <feature>RcvData</feature>
-      <feature>LocalSearch</feature>
-      <feature>DistSearch</feature>
-      <feature>RcvSearch</feature>
-      <feature>ScheduledSearch</feature>
       <feature>Alerting</feature>
+      <feature>Auth</feature>
+      <feature>CanBeRemoteMaster</feature>
       <feature>DeployClient</feature>
       <feature>DeployServer</feature>
-      <feature>SplunkWeb</feature>
+      <feature>DistSearch</feature>
+      <feature>FwdData</feature>
+      <feature>LocalSearch</feature>
+      <feature>RcvData</feature>
+      <feature>RcvSearch</feature>
+      <feature>ScheduledSearch</feature>
       <feature>SigningProcessor</feature>
+      <feature>SplunkWeb</feature>
       <feature>SyslogOutputProcessor</feature>
-      <feature>CanBeRemoteMaster</feature>
     </features>
-    <optional_features>
-      <feature>DisableQuotaEnforcement</feature>
-    </optional_features>
     <sourcetypes/>
     <guid>12345678-1234-1234-1234-123456789ABC</guid>
   </payload>
