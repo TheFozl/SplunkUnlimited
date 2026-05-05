@@ -311,6 +311,11 @@ HASH_DB = {
         "platform": "linux64",
         "patch_id": "spl_lin64_3",
     },
+    "eabdd7355f3c43649269ab9efe6593a8a831b5a1d9d179e5d1a7ff62b839eaab": {
+        "version":  "9.3.12",
+        "platform": "linux64",
+        "patch_id": "spl_lin64_3",
+    },
     "bcdcbf8fa6c0cfc1ef13cc159d54c5f5adffea38f5d87096797badaf33bc7aa6": {
         "version":  "9.4.0",
         "platform": "linux64",
@@ -443,7 +448,7 @@ PATCH_DB = {
         "replace": [0xE8, 0xA3, 0xC3, 0xFF, 0xFF, 0x84, 0xC0, 0x0F, 0x85],
     },
     "spl_lin64_3": {
-        "description": "splunkd (linux64), 9.1.2 to 9.3.11",
+        "description": "splunkd (linux64), 9.1.2 to 9.3.12",
         "pattern": [0xE8, 0x43, 0xC3, 0xFF, 0xFF, 0x84, 0xC0, 0x0F, 0x84],
         "replace": [0xE8, 0x43, 0xC3, 0xFF, 0xFF, 0x84, 0xC0, 0x0F, 0x85],
     },
