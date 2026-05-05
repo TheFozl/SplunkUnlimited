@@ -4,8 +4,8 @@ Enjoy the full power of Splunk Enterprise at no cost.
 ## Usage
 
 ### 1. (Optional) Download Splunk Enterprise if you don't already have it 
-You can download it at: https://www.splunk.com/en_us/download/splunk-enterprise.html\
-or can you also choose any version here: https://livehybrid.github.io/downloadSplunk\
+You can download it at: https://www.splunk.com/en_us/download/splunk-enterprise.html \
+Or can you also choose any version here: https://livehybrid.github.io/downloadSplunk \
 Install it and follow the official guide.
 
 ### 2. Stop the server
